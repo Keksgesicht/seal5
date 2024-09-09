@@ -1,0 +1,11 @@
+import "../rv_base/RV32I.core_desc"
+
+InstructionSet XSimple extends RV32I {
+  instructions {
+    MAC {
+      encoding: 7'b0000000 :: rs2[4:0] :: rs1[4:0] :: 3'b000 :: rd[4:0] :: 7'b0101011;
+      assembly: {"xsimple.mac", "{name(rd)}, {name(rs1)}, {name(rs2)}"};
+      behavior: X[rd] = X[rd] * X[rs1] + X[rs2];
+    }
+  }
+}

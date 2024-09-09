@@ -36,7 +36,7 @@ SKIP_PATTERNS = bool(int(os.environ.get("SKIP_PATTERNS", 0)))
 INTERACTIVE = bool(int(os.environ.get("INTERACTIVE", 0)))
 PREPATCHED = bool(int(os.environ.get("PREPATCHED", 0)))
 BUILD_CONFIG = os.environ.get("BUILD_CONFIG", "release")
-IGNORE_ERROR = bool(int(os.environ.get("IGNORE_ERROR", 1)))
+IGNORE_ERROR = bool(int(os.environ.get("IGNORE_ERROR", 0)))
 TEST = bool(int(os.environ.get("TEST", 1)))
 INSTALL = bool(int(os.environ.get("INSTALL", 1)))
 DEPLOY = bool(int(os.environ.get("DEPLOY", 1)))
@@ -44,7 +44,7 @@ EXPORT = bool(int(os.environ.get("EXPORT", 1)))
 CLEANUP = bool(int(os.environ.get("CLEANUP", 0)))
 PROGRESS = bool(int(os.environ.get("PROGRESS", 1)))
 CLONE_DEPTH = bool(int(os.environ.get("CLONE_DEPTH", 1)))
-DEST = os.environ.get("DEST", "/tmp/seal5_llvm_demo").rstrip("/")
+DEST = os.environ.get("DEST", "/home/keks/git/hdd/tmp/llvm-project").rstrip("/")
 NAME = os.environ.get("NAME", "demo")
 
 seal5_flow = Seal5Flow(DEST, name=NAME)
@@ -71,16 +71,13 @@ seal5_flow.initialize(
 
 # Load CoreDSL inputs
 cdsl_files = [
-    EXAMPLES_DIR / "cdsl" / "rv_example" / "Example.core_desc",
+    EXAMPLES_DIR / "cdsl" / "rv_example" / "MAC.core_desc",
 ]
 seal5_flow.load(cdsl_files, verbose=VERBOSE, overwrite=True)
 
 # Load test inputs
 test_files = [
-    EXAMPLES_DIR / "tests" / "example" / "xexample32.test.s",
-    EXAMPLES_DIR / "tests" / "example" / "xexample32.test-invalid.s",
-    EXAMPLES_DIR / "tests" / "example" / "xexample32.test-codegen.ll",
-    EXAMPLES_DIR / "tests" / "example" / "test_subincacc.c",
+    EXAMPLES_DIR / "tests" / "example" / "MAC.c",
 ]
 seal5_flow.load(test_files, verbose=VERBOSE, overwrite=True)
 
