@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # Copyright (c) 2023 TUM Department of Electrical and Computer Engineering.
 #
